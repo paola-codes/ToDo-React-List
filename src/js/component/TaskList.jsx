@@ -3,6 +3,8 @@ import React from "react";
 export const TaskList = () => {
 	const [task, setTask] = React.useState("");
 	const [list, setList] = React.useState([]);
+	const [isHovering, setisHovering] = React.useState(-1);
+
 	const handleInput = e => {
 		if (e.keyCode == 13) {
 			setTask(e.target.value);
@@ -27,16 +29,20 @@ export const TaskList = () => {
 					onKeyDown={e => handleInput(e)}
 				/>
 			</div>
-			<div className="w-100">
+			<div className="w-100 h-100">
 				<ul className="ulStyle m-0 p-0">
 					{list.map((singleTask, i) => {
 						return (
 							<li
 								className="d-flex justify-content-between ps-5 pe-4 py-2 border-end border-start border-bottom text-muted fw-light fs-5"
-								key={i}>
+								key={i}
+								onMouseEnter={() => setisHovering(i)}
+								onMouseLeave={() => setisHovering(-1)}>
 								{singleTask}
 								<span
-									className="text-danger"
+									className={`text-danger ${
+										isHovering == i ? "" : "hidden"
+									}`}
 									onClick={() => deleteToDo(i)}>
 									x
 								</span>
