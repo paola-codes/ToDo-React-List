@@ -3,7 +3,6 @@ import React from "react";
 export const TaskList = () => {
 	const [task, setTask] = React.useState("");
 	const [list, setList] = React.useState([]);
-
 	const handleInput = e => {
 		if (e.keyCode == 13) {
 			setTask(e.target.value);
@@ -29,7 +28,7 @@ export const TaskList = () => {
 				/>
 			</div>
 			<div className="w-100">
-				<ul className="ulStyle m-0 p-0 myUL">
+				<ul className="ulStyle m-0 p-0">
 					{list.map((singleTask, i) => {
 						return (
 							<li
@@ -48,7 +47,7 @@ export const TaskList = () => {
 			</div>
 			<div className="w-100">
 				<div className="ps-5 py-1 border-end border-start border-bottom text-muted fw-light fs-6 text-start">
-					<span>Items</span>
+					<span>{list.length} Items</span>
 				</div>
 			</div>
 		</div>
